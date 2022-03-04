@@ -19,13 +19,17 @@ export function TaskList() {
     const lastTask = taskList.pop();
     const taskId = lastTask ? lastTask.id + 1 : 1;
 
-    const newTask = {
-      id: taskId,
-      title: newTaskTitle,
-      isComplete: false,
-    };
+    const taskTitle = newTaskTitle?.trim() || "";
 
-    setTasks([...tasks, newTask]);
+    if (taskTitle) {
+      const newTask = {
+        id: taskId,
+        title: taskTitle,
+        isComplete: false,
+      };
+
+      setTasks([...tasks, newTask]);
+    }
   }
 
   function handleToggleTaskCompletion(id: number) {
